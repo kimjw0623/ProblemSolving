@@ -1,17 +1,6 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         # dp
-        ans = []
-        # def recursive(cur_val,idx):
-        #     if idx==len(nums):
-        #         if cur_val == target:
-        #             ans.append("1")
-        #         return
-        #     for i in [-1,1]:
-        #         recursive(cur_val+i*nums[idx],idx+1)
-        # recursive(0,0)
-
-        # visited: same idx, 
         mapping = dict()
         mapping[0] = 1
         for i in range(len(nums)):
