@@ -15,8 +15,7 @@ class Solution:
                     dp[j] = temp[j-1]
                 else:
                     dp[j] = min(temp[j-1],dp[j-1],dp[j]) + 1
-            
-            print(dp,temp)
+
         return dp[-1]
                 
 
