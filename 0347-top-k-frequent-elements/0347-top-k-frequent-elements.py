@@ -8,12 +8,13 @@ class Solution:
         num_dict = {}
         for num in nums:
             num_dict[num] = num_dict.get(num,0) + 1
-        heap = []
+        
+        freq_to_value = {}
         for key,value in num_dict.items():
-            heap.append((-value,key))
-
-        heapq.heapify(heap)
-        for i in range(k):
-            ans.append(heapq.heappop(heap)[1])
-            
-        return ans
+            freq_to_value[value] = freq_to_value.get(value,[]) + [key]
+        
+        for freq in range(len(nums)+1,0,-1):
+            if freq in freq_to_value:
+                ans.extend(freq_to_value[freq]) 
+        print(freq_to_value)
+        return ans[:k]
