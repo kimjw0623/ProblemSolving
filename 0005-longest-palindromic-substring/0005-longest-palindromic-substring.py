@@ -13,5 +13,3 @@ class Solution:
                 maxlen += 1
             #print(start,maxlen)
         return s[start:start+maxlen]
-                
-        
