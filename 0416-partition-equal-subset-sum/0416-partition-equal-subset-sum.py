@@ -1,18 +1,25 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        # target_sum 을 만족하는 set이 존재해야 함
-        # brute force: X
-        # DP? target_sum 을 만족하는 범위가 적으므로 가능할 듯
-        if sum(nums)%2: return False
-        target_sum = sum(nums)//2
-
-        sum_dict = {}
+        # sorting first
+        # make sum(nums)//2
+        
+        # if sum(nums) % 2 == 1:
+        #     return False
+        # half = sum(nums) // 2
+        # @cache
+        # def rec(s,i):
+        #     if i > len(nums)-1 or s < 1:
+        #         return False
+        #     if s == nums[i]:
+        #         return True
+        #     return rec(s,i+1) or rec(s-nums[i],i+1)
+        # return rec(half,0)
+        total_sum = sum(nums)
+        if total_sum & 1: return False
+        half = total_sum // 2
+        dp = [True] + [False]*half
         for num in nums:
-            if not sum_dict:
-                sum_dict[num] = True
-                continue
-            for s in list(sum_dict.keys())[:]:
-                sum_dict[s+num] = True
-            sum_dict[num] = True
-        print(sum_dict)
-        return sum_dict.get(target_sum,False) 
+            for j in range(half, 0,-1):
+                if j-num >= 0 and dp[j-num]: dp[j] = True
+        return dp[half] 
+        
